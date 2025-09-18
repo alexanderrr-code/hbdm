@@ -1,32 +1,267 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>🎉 ¡Feliz Cumpleaños!</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>¡Feliz Cumpleaños, Medaly! 🎉</title>
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Comic Sans MS', cursive;
-      overflow: hidden;
+    :root{
+      --bg1:#0f172a; /* navy */
+      --bg2:#0ea5a4; /* teal */
+      --accent:#ffdd57; /* gold */
+      --card:#0b1220;
+      --glass: rgba(255,255,255,0.06);
+      --soft: rgba(255,255,255,0.04);
+      --radius:18px;
+      --shadow: 0 10px 30px rgba(2,6,23,0.6);
+      color-scheme: dark;
     }
-    h1 {
-      font-size: 3em;
-      color: #fff;
-      text-shadow: 2px 2px 5px #000;
-      animation: saltar 1s infinite alternate;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(14,165,164,0.12), transparent),
+                  radial-gradient(900px 400px at 90% 80%, rgba(99,102,241,0.08), transparent),
+                  linear-gradient(160deg,var(--bg1), #071024 60%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      gap:20px;
     }
-    @keyframes saltar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
+
+    /* Stage */
+    .card {
+      width: min(980px, 96vw);
+      max-width:980px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: calc(var(--radius));
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 2.4vw, 28px);
+      position:relative;
+      overflow:visible;
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:20px;
+      align-items:center;
     }
+
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr; padding:18px}
+    }
+
+    /* Left panel */
+    .hero{
+      padding:18px 24px;
+    }
+    .greeting {
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    .badge{
+      width:86px;height:86px;border-radius:999px;
+      background: conic-gradient(from 200deg, #ffd166, #ff6b6b, #845ef7, #ffd166);
+      display:grid;place-items:center;font-weight:700;color:#081129;box-shadow:0 8px 30px rgba(255,221,87,0.12), inset 0 -6px 16px rgba(0,0,0,0.12);
+      transform:rotate(-6deg);
+    }
+    .badge .emoji{font-size:36px}
+    h1{margin:0;font-size: clamp(20px, 4.8vw, 40px); line-height:1.02; color:var(--accent); text-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    p.lead{margin:8px 0 18px;color:rgba(255,255,255,0.9); font-size:16px}
+
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .pill{background:var(--glass); padding:10px 14px;border-radius:12px;font-weight:600; font-size:14px;backdrop-filter: blur(6px);box-shadow:0 6px 18px rgba(2,6,23,0.45)}
+
+    /* Right panel */
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px; padding:20px; height:100%; min-height:260px; display:flex;flex-direction:column; gap:12px; justify-content:center; align-items:center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    .cake{
+      width:160px;height:160px;border-radius:20px; background: linear-gradient(180deg,#ff9aa2,#ff6b6b); display:grid;place-items:center; position:relative; box-shadow:0 18px 40px rgba(255,102,102,0.12)
+    }
+    .cake:after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:-18px;width:120px;height:20px;border-radius:20px;background:linear-gradient(180deg,#ffb3b8,#ff6b6b);filter:blur(12px);opacity:0.35}
+    .candle{position:absolute;top:18px; width:12px;height:40px;background:linear-gradient(180deg,#fff8b5,#ffd166); border-radius:6px}
+    .flame{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:18px;height:24px;border-radius:50% 50% 40% 40%/60% 60% 40% 40%; background: radial-gradient(circle at 30% 30%, #fff59d 0%, #ffb74d 35%, #ff7043 70%); filter:drop-shadow(0 6px 10px rgba(255,120,80,0.12)); animation: flicker 1s infinite}
+    @keyframes flicker{0%{transform:translateX(-50%) scaleY(1)}50%{transform:translateX(-50%) scaleY(1.06)}100%{transform:translateX(-50%) scaleY(1)}}
+
+    /* Buttons */
+    .controls{display:flex;gap:10px;flex-wrap:wrap}
+    button.btn{border:0;padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer; font-size:15px}
+    .primary{background:linear-gradient(90deg,#ffb86b,#ff6b6b); color:#071129; box-shadow: 0 10px 30px rgba(255,107,107,0.12);}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06); color:rgba(255,255,255,0.9)}
+
+    /* Floating balloons */
+    .balloon{position:absolute;width:80px;height:110px;border-radius:40px 40px 20px 20px; display:grid;place-items:center;color:#071129;font-weight:800; transform-origin:center bottom}
+    .balloon .shine{position:absolute; left:18px; top:18px; width:18px; height:36px; border-radius:9px; background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.15)); mix-blend-mode:overlay}
+    .string{position:absolute; bottom:-64px; width:2px; height:60px; background:linear-gradient(180deg, rgba(255,255,255,0.2), rgba(0,0,0,0.2)); left:50%; transform:translateX(-50%)}
+    .b1{left: -36px; top:-46px; background:linear-gradient(180deg,#ffd6a5,#ffb4a2)}
+    .b2{left: -6px; top:-88px; background:linear-gradient(180deg,#c6f6d5,#9ae6b4)}
+    .b3{right:-36px; top:-56px; background:linear-gradient(180deg,#c7d2fe,#a78bfa)}
+
+    /* Modal */
+    .modal{position:fixed; inset:0; display:grid; place-items:center; background:rgba(2,6,23,0.6); visibility:hidden; opacity:0; transition:all .28s ease}
+    .modal.open{visibility:visible; opacity:1}
+    .modal-card{width:min(720px,94vw); max-width:720px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px; padding:22px; box-shadow:0 30px 80px rgba(2,6,23,0.7); display:grid; grid-template-columns:1fr 260px; gap:18px}
+    @media (max-width:880px){ .modal-card{grid-template-columns:1fr; padding:16px} }
+    .message{font-size:18px;color:rgba(255,255,255,0.92); line-height:1.45}
+
+    /* sparkles */
+    .sparkles{position:absolute; inset:0; pointer-events:none}
+    .spark{position:absolute;width:6px;height:6px;border-radius:2px;background:linear-gradient(180deg,#fff4a8,#ffd166); opacity:0; transform:scale(0);}
+
+    /* tiny helpers */
+    .muted{font-size:13px;color:rgba(255,255,255,0.6)}
+    footer{position:absolute; left:18px; bottom:12px; font-size:12px; color:rgba(255,255,255,0.35)}
   </style>
 </head>
 <body>
-  <h1>🎂 ¡Feliz Cumpleaños, [Nombre]! 🎉</h1>
+  <div class="card" role="main" aria-labelledby="title">
+    <div class="hero">
+      <div class="greeting">
+        <div class="badge" aria-hidden="true"><div class="emoji">🎈</div></div>
+        <div>
+          <h1 id="title">¡Feliz Cumpleaños, Medaly!</h1>
+          <p class="lead">Un día especial para celebrar tus logros, tus risas y todos los momentos que están por venir. Pulsa la sorpresa y disfruta ✨</p>
+        </div>
+      </div>
+
+      <div class="features" aria-hidden="true">
+        <div class="pill">Animación confetti</div>
+        <div class="pill">Velita parpadeante</div>
+        <div class="pill">Sorpresa interactiva</div>
+        <div class="pill">Responsivo y accesible</div>
+      </div>
+
+      <div style="height:16px"></div>
+
+      <div class="controls" role="group" aria-label="Acciones">
+        <button class="btn primary" id="openSurprise">Abrir sorpresa 🎁</button>
+        <button class="btn ghost" id="toggleConfetti">Apagar confetti</button>
+        <button class="btn ghost" id="toggleBalloons">Animar globos</button>
+      </div>
+
+      <div style="height:18px"></div>
+      <p class="muted">Diseñado con cariño — personalizable. Puedes cambiar el nombre, los colores o el mensaje en el código.</p>
+    </div>
+
+    <div class="panel" aria-hidden="true">
+      <div style="position:relative; width:100%; display:flex; align-items:center; justify-content:center;">
+        <div class="cake" aria-hidden="true">
+          <div class="flame" id="flame"></div>
+          <div class="candle" style="left:50%; transform:translateX(-50%);"></div>
+        </div>
+      </div>
+
+      <div style="text-align:center">
+        <div style="font-weight:800; font-size:20px;">Medaly</div>
+        <div class="muted">Que este nuevo año te traiga mucha alegría 🎉</div>
+      </div>
+    </div>
+
+    <!-- balloons -->
+    <div class="balloon b1" id="balloon1" aria-hidden="true"><div class="shine"></div>¡M!</div>
+    <div class="balloon b2" id="balloon2" aria-hidden="true"><div class="shine"></div>✨</div>
+    <div class="balloon b3" id="balloon3" aria-hidden="true"><div class="shine"></div>🎉</div>
+
+    <canvas id="confettiCanvas" style="position:absolute;inset:0;pointer-events:none"></canvas>
+    <div class="sparkles" id="sparkles"></div>
+
+    <footer>🎂 Happy vibes — Personaliza el contenido en el archivo</footer>
+  </div>
+
+  <!-- Modal / Sorpresa -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document">
+      <div>
+        <h2 style="margin-top:0; color:var(--accent)">¡Sorpresa, Medaly! 🎉</h2>
+        <p class="message" id="modalMessage">Que hoy sea el comienzo de un año brillante: muchas risas, salud y proyectos cumplidos. ¡Te mando un abrazo enorme!</p>
+        <div style="height:12px"></div>
+        <div style="display:flex;gap:10px">
+          <button class="btn primary" id="playTune">Reproducir melodía</button>
+          <button class="btn ghost" id="closeModal">Cerrar</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center; gap:14px">
+        <div style="width:120px;height:120px;border-radius:16px;background:linear-gradient(180deg,#ffe6e6,#ffdcdc); display:grid;place-items:center;font-weight:900;color:#6b0f0f; font-size:18px">Medaly</div>
+        <div class="muted">Pulsa reproducir para una pequeña canción hecha con WebAudio (no requiere archivos externos).</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Simple confetti ---
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    addEventListener('resize', resize);
+    resize();
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+    class Confetto{ constructor(){ this.reset() }
+      reset(){ this.x = rand(0,W); this.y = rand(-H,0); this.w = rand(6,12); this.h = this.w*1.6; this.vx = rand(-0.6,0.6); this.vy = rand(1,3); this.r = rand(0,360); this.dr = rand(-6,6); this.color = `hsl(${~~rand(0,360)},80%,60%)` }
+      update(){ this.x += this.vx; this.y += this.vy; this.r += this.dr; if(this.y>H+40) this.reset() }
+      draw(){ ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.r*Math.PI/180); ctx.fillStyle=this.color; ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h); ctx.restore() }
+    }
+    const confetti = Array.from({length:120}, ()=> new Confetto());
+    let confettiOn = true;
+    function confettiLoop(){ ctx.clearRect(0,0,W,H); if(confettiOn) confetti.forEach(c=>{c.update(); c.draw()}); requestAnimationFrame(confettiLoop) }
+    confettiLoop();
+
+    // --- Balloons gentle float ---
+    const balloons = [document.getElementById('balloon1'), document.getElementById('balloon2'), document.getElementById('balloon3')];
+    let balloonsOn = false; let balloonAngles=[0,0,0];
+    function animateBalloons(){ if(!balloonsOn) return; balloonAngles = balloonAngles.map((a,i)=>a+0.01*(1+i*0.3));
+      balloons.forEach((b,i)=>{ const ang = Math.sin(balloonAngles[i])*8; b.style.transform = `translateY(${Math.sin(balloonAngles[i])*6}px) rotate(${ang}deg) scale(${1+Math.sin(balloonAngles[i])*0.02})` });
+      requestAnimationFrame(animateBalloons);
+    }
+
+    document.getElementById('toggleConfetti').addEventListener('click', ()=>{ confettiOn = !confettiOn; document.getElementById('toggleConfetti').textContent = confettiOn? 'Apagar confetti' : 'Encender confetti' });
+    document.getElementById('toggleBalloons').addEventListener('click', ()=>{ balloonsOn = !balloonsOn; if(balloonsOn) animateBalloons(); document.getElementById('toggleBalloons').textContent = balloonsOn? 'Detener globos' : 'Animar globos' });
+
+    // --- Sparkles on open ---
+    const sparkles = document.getElementById('sparkles');
+    function spawnSparkles(x,y){ for(let i=0;i<14;i++){ const el=document.createElement('div'); el.className='spark'; el.style.left=(x + rand(-60,80))+'px'; el.style.top=(y + rand(-40,40))+'px'; el.style.opacity='1'; el.style.transform='scale(0)'; el.style.transition='all .9s cubic-bezier(.2,.9,.2,1)'; sparkles.appendChild(el); requestAnimationFrame(()=>{ el.style.opacity='1'; el.style.transform=`translateY(${rand(-30,-120)}px) scale(${rand(0.6,1.2)})`; el.style.opacity='0' }); setTimeout(()=>el.remove(),1000) }}
+
+    // --- Modal / Surprise ---
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('openSurprise');
+    const closeBtn = document.getElementById('closeModal');
+    openBtn.addEventListener('click', (e)=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); spawnSparkles(e.clientX,e.clientY); playShortMelody(); });
+    closeBtn.addEventListener('click', ()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); } });
+
+    // --- Tiny WebAudio melody (no files) ---
+    let audioCtx = null;
+    function ensureAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }
+    function playTone(freq, dur, t=0){ ensureAudio(); const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type='sine'; o.frequency.value = freq; g.gain.value = 0.0001; o.connect(g); g.connect(audioCtx.destination); o.start(audioCtx.currentTime + t); g.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + t + dur); o.stop(audioCtx.currentTime + t + dur + 0.02); }
+    function playShortMelody(){ // simple upbeat arpeggio
+      try{ const base = 440; playTone(base*0.5,0.18,0); playTone(base*0.66,0.18,0.16); playTone(base*0.8,0.28,0.34); playTone(base*1.0,0.36,0.6); playTone(base*1.33,0.36,0.98); }catch(e){ console.warn(e) }}
+    document.getElementById('playTune').addEventListener('click', ()=>{ // resume context on user gesture
+      ensureAudio(); if(audioCtx.state==='suspended') audioCtx.resume(); playShortMelody(); });
+
+    // --- Flame subtle pulse ---
+    const flame = document.getElementById('flame');
+    let flameScale = 1; function flameLoop(){ flameScale = 1 + Math.sin(Date.now()/280)/18; flame.style.transform = `translateX(-50%) scale(${flameScale})`; requestAnimationFrame(flameLoop) };
+    flameLoop();
+
+    // -- Accessibility: keyboard shortcuts --
+    addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+      if(e.key==='c'){ confettiOn = !confettiOn; }
+      if(e.key==='b'){ balloonsOn = !balloonsOn; if(balloonsOn) animateBalloons(); }
+    });
+
+    // small intro animation
+    document.body.style.opacity=0; document.body.style.transition='opacity .6s ease'; setTimeout(()=>document.body.style.opacity=1,80);
+
+  </script>
 </body>
 </html>
