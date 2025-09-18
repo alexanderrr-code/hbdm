@@ -96,6 +96,16 @@
             transform: translateY(0);
         }
         
+        /* Efecto de latido para todas las letras */
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
         .message {
             font-size: 1.8rem;
             margin-top: 2rem;
@@ -319,6 +329,12 @@
                     animateLetters(line2Letters, 0, () => {
                         const line3Letters = line3.querySelectorAll('.letter');
                         animateLetters(line3Letters, 0, () => {
+                            // Aplicar efecto de latido a todas las letras
+                            const allLetters = document.querySelectorAll('.letter');
+                            allLetters.forEach(letter => {
+                                letter.classList.add('pulse');
+                            });
+                            
                             // Efecto de confeti al aparecer el texto
                             setTimeout(() => {
                                 message.classList.add('show');
